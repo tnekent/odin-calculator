@@ -43,8 +43,7 @@ function getCalcResult() {
     const secondNumber = Number(secondOperand);
     const result = operate(operator, firstNumber, secondNumber);
     // Reconverting to number removes the trailing zeroes
-    // present after toFixed even if result
-    // is an integer
+    // present after toFixed even if result is an integer
     return Number(result.toFixed(10));
 }
 
