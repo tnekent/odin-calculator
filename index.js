@@ -48,6 +48,12 @@ function getCalcResult() {
     return Number(result.toFixed(10));
 }
 
+function resetOperationVariables() {
+    firstOperand = "";
+    secondOperand = "";
+    operator = null;
+}
+
 const calcDisplay = document.querySelector("#calc-display");
 const numberButtons = document.querySelectorAll(".btn-num");
 numberButtons.forEach(btn => {
@@ -91,15 +97,11 @@ equalsButton.addEventListener("click", e => {
     }
     const operationResult = getCalcResult();
     calcDisplay.textContent = operationResult;
-    firstOperand = "";
-    secondOperand = "";
-    operator = null;
+    resetOperationVariables();
 })
 
 const clearButton = document.querySelector(".btn-clr");
 clearButton.addEventListener("click", e => {
-    firstOperand = "";
-    secondOperand = "";
-    operator = null;
     calcDisplay.textContent = "";
+    resetOperationVariables();
 })
