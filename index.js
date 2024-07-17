@@ -62,6 +62,10 @@ operationButtons.forEach(btn => {
 
 const equalsButton = document.querySelector(".btn-equals");
 equalsButton.addEventListener("click", e => {
+    if (!secondNumberString) {
+        // Do nothing
+        return;
+    }
     const firstNumber = Number(firstNumberString);
     const secondNumber = Number(secondNumberString);
     const operationResult = operate(operationToDo, firstNumber, secondNumber);
