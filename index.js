@@ -59,10 +59,6 @@ numberButtons.forEach(btn => {
     btn.addEventListener("click", e => {
         const number = e.target.textContent;
         if (!operator) {
-            if (secondOperand) {
-                firstOperand = "";
-                secondOperand = "";
-            }
             firstOperand += number;
             calcDisplay.textContent = firstOperand;
         } else {
