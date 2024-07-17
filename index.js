@@ -35,6 +35,7 @@ function operate(operator, num1, num2) {
 }
 
 let firstNumberString = "";
+let secondNumberString = "";
 let operationToDo;
 
 const calcDisplay = document.querySelector("#calc-display");
@@ -42,8 +43,13 @@ const numberButtons = document.querySelectorAll(".btn-num");
 numberButtons.forEach(btn => {
     btn.addEventListener("click", e => {
         const number = Number(e.target.textContent);
-        firstNumberString += number;
-        calcDisplay.textContent = firstNumberString;
+        if (!operationToDo) {
+            firstNumberString += number;
+            calcDisplay.textContent = firstNumberString;
+        } else {
+            secondNumberString += number;
+            calcDisplay.textContent = secondNumberString;
+        }
     })
 })
 
