@@ -37,7 +37,11 @@ function operate(operator, num1, num2) {
 function getCalcResult() {
     const firstNumber = Number(firstNumberString);
     const secondNumber = Number(secondNumberString);
-    return operate(operationToDo, firstNumber, secondNumber);
+    const result = operate(operationToDo, firstNumber, secondNumber);
+    // Reconverting to number removes the trailing zeroes
+    // present after toFixed even if result
+    // is an integer
+    return Number(result.toFixed(10));
 }
 
 let firstNumberString = "";
