@@ -76,6 +76,10 @@ operationButtons.forEach(btn => {
             // then clicking an operator should do nothing.
             return;
         }
+        // Entering the second operand and then choosing an operator,
+        // we enter this case where we immediately get a result, show
+        // that result and set the result as the first operand for
+        // the next operation.
         if (secondOperand) {
             const result = getCalcResult();
             firstOperand = result.toString();
