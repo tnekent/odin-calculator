@@ -70,6 +70,9 @@ numberButtons.forEach(btn => {
 const operationButtons = document.querySelectorAll(".btn-op");
 operationButtons.forEach(btn => {
     btn.addEventListener("click", e => {
+        if(!firstNumberString) {
+            return;
+        }
         if (secondNumberString) {
             const result = getCalcResult();
             firstNumberString = result.toString();
