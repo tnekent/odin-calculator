@@ -34,6 +34,12 @@ function operate(operator, num1, num2) {
     return operationFunc(num1, num2);
 }
 
+function getCalcResult() {
+    const firstNumber = Number(firstNumberString);
+    const secondNumber = Number(secondNumberString);
+    return operate(operationToDo, firstNumber, secondNumber);
+}
+
 let firstNumberString = "";
 let secondNumberString = "";
 let operationToDo;
@@ -60,6 +66,12 @@ numberButtons.forEach(btn => {
 const operationButtons = document.querySelectorAll(".btn-op");
 operationButtons.forEach(btn => {
     btn.addEventListener("click", e => {
+        if (secondNumberString) {
+            const result = getCalcResult();
+            firstNumberString = result.toString();
+            calcDisplay.textContent = firstNumberString;
+            secondNumberString = "";
+        }
         operationToDo = e.target.textContent;
     })
 })
