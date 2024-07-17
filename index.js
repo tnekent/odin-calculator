@@ -77,6 +77,8 @@ const operationButtons = document.querySelectorAll(".btn-op");
 operationButtons.forEach(btn => {
     btn.addEventListener("click", e => {
         if(!firstOperand) {
+            // If user hasn't typed a number as the first operand yet,
+            // then clicking an operator should do nothing.
             return;
         }
         if (secondOperand) {
@@ -92,7 +94,8 @@ operationButtons.forEach(btn => {
 const equalsButton = document.querySelector(".btn-equals");
 equalsButton.addEventListener("click", e => {
     if (!secondOperand) {
-        // Do nothing
+        // If user hasn't typed the second number,
+        // then clicking equals should do nothing.
         return;
     }
     const operationResult = getCalcResult();
