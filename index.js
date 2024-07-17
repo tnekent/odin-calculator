@@ -1,3 +1,7 @@
+let firstOperand = "";
+let secondOperand = "";
+let operator;
+
 function add(a, b) {
     return a + b;
 }
@@ -43,10 +47,6 @@ function getCalcResult() {
     // is an integer
     return Number(result.toFixed(10));
 }
-
-let firstOperand = "";
-let secondOperand = "";
-let operator;
 
 const calcDisplay = document.querySelector("#calc-display");
 const numberButtons = document.querySelectorAll(".btn-num");
