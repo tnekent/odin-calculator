@@ -44,6 +44,10 @@ numberButtons.forEach(btn => {
     btn.addEventListener("click", e => {
         const number = e.target.textContent;
         if (!operationToDo) {
+            if (secondNumberString) {
+                firstNumberString = "";
+                secondNumberString = "";
+            }
             firstNumberString += number;
             calcDisplay.textContent = firstNumberString;
         } else {
@@ -70,4 +74,5 @@ equalsButton.addEventListener("click", e => {
     const secondNumber = Number(secondNumberString);
     const operationResult = operate(operationToDo, firstNumber, secondNumber);
     calcDisplay.textContent = operationResult;
+    operationToDo = null;
 })
