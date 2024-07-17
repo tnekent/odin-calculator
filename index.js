@@ -35,34 +35,34 @@ function operate(operator, num1, num2) {
 }
 
 function getCalcResult() {
-    const firstNumber = Number(firstNumberString);
-    const secondNumber = Number(secondNumberString);
-    const result = operate(operationToDo, firstNumber, secondNumber);
+    const firstNumber = Number(firstOperand);
+    const secondNumber = Number(secondOperand);
+    const result = operate(operator, firstNumber, secondNumber);
     // Reconverting to number removes the trailing zeroes
     // present after toFixed even if result
     // is an integer
     return Number(result.toFixed(10));
 }
 
-let firstNumberString = "";
-let secondNumberString = "";
-let operationToDo;
+let firstOperand = "";
+let secondOperand = "";
+let operator;
 
 const calcDisplay = document.querySelector("#calc-display");
 const numberButtons = document.querySelectorAll(".btn-num");
 numberButtons.forEach(btn => {
     btn.addEventListener("click", e => {
         const number = e.target.textContent;
-        if (!operationToDo) {
-            if (secondNumberString) {
-                firstNumberString = "";
-                secondNumberString = "";
+        if (!operator) {
+            if (secondOperand) {
+                firstOperand = "";
+                secondOperand = "";
             }
-            firstNumberString += number;
-            calcDisplay.textContent = firstNumberString;
+            firstOperand += number;
+            calcDisplay.textContent = firstOperand;
         } else {
-            secondNumberString += number;
-            calcDisplay.textContent = secondNumberString;
+            secondOperand += number;
+            calcDisplay.textContent = secondOperand;
         }
     })
 })
@@ -70,36 +70,36 @@ numberButtons.forEach(btn => {
 const operationButtons = document.querySelectorAll(".btn-op");
 operationButtons.forEach(btn => {
     btn.addEventListener("click", e => {
-        if(!firstNumberString) {
+        if(!firstOperand) {
             return;
         }
-        if (secondNumberString) {
+        if (secondOperand) {
             const result = getCalcResult();
-            firstNumberString = result.toString();
-            calcDisplay.textContent = firstNumberString;
-            secondNumberString = "";
+            firstOperand = result.toString();
+            calcDisplay.textContent = firstOperand;
+            secondOperand = "";
         }
-        operationToDo = e.target.textContent;
+        operator = e.target.textContent;
     })
 })
 
 const equalsButton = document.querySelector(".btn-equals");
 equalsButton.addEventListener("click", e => {
-    if (!secondNumberString) {
+    if (!secondOperand) {
         // Do nothing
         return;
     }
     const operationResult = getCalcResult();
     calcDisplay.textContent = operationResult;
-    firstNumberString = "";
-    secondNumberString = "";
-    operationToDo = null;
+    firstOperand = "";
+    secondOperand = "";
+    operator = null;
 })
 
 const clearButton = document.querySelector(".btn-clr");
 clearButton.addEventListener("click", e => {
-    firstNumberString = "";
-    secondNumberString = "";
-    operationToDo = null;
+    firstOperand = "";
+    secondOperand = "";
+    operator = null;
     calcDisplay.textContent = "";
 })
