@@ -59,3 +59,11 @@ operationButtons.forEach(btn => {
         operationToDo = e.target.textContent;
     })
 })
+
+const equalsButton = document.querySelector(".btn-equals");
+equalsButton.addEventListener("click", e => {
+    const firstNumber = Number(firstNumberString);
+    const secondNumber = Number(secondNumberString);
+    const operationResult = operate(operationToDo, firstNumber, secondNumber);
+    calcDisplay.textContent = operationResult;
+})
