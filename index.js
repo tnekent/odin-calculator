@@ -82,9 +82,7 @@ equalsButton.addEventListener("click", e => {
         // Do nothing
         return;
     }
-    const firstNumber = Number(firstNumberString);
-    const secondNumber = Number(secondNumberString);
-    const operationResult = operate(operationToDo, firstNumber, secondNumber);
+    const operationResult = getCalcResult();
     calcDisplay.textContent = operationResult;
     operationToDo = null;
 })
