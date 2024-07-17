@@ -88,6 +88,8 @@ equalsButton.addEventListener("click", e => {
     }
     const operationResult = getCalcResult();
     calcDisplay.textContent = operationResult;
+    firstNumberString = "";
+    secondNumberString = "";
     operationToDo = null;
 })
 
