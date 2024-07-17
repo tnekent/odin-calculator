@@ -16,7 +16,7 @@ function divide(a, b) {
 
 function operate(operator, num1, num2) {
     let operationFunc;
-    switch (operate) {
+    switch (operator) {
         case "+":
             operationFunc = add;
             break;
