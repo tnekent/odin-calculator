@@ -88,3 +88,11 @@ equalsButton.addEventListener("click", e => {
     calcDisplay.textContent = operationResult;
     operationToDo = null;
 })
+
+const clearButton = document.querySelector(".btn-clr");
+clearButton.addEventListener("click", e => {
+    firstNumberString = "";
+    secondNumberString = "";
+    operationToDo = null;
+    calcDisplay.textContent = "";
+})
