@@ -42,7 +42,7 @@ const calcDisplay = document.querySelector("#calc-display");
 const numberButtons = document.querySelectorAll(".btn-num");
 numberButtons.forEach(btn => {
     btn.addEventListener("click", e => {
-        const number = Number(e.target.textContent);
+        const number = e.target.textContent;
         if (!operationToDo) {
             firstNumberString += number;
             calcDisplay.textContent = firstNumberString;
