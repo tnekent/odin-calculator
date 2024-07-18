@@ -85,31 +85,36 @@ numberButtons.forEach(btn => {
     })
 })
 
+function setOperator(op) {
+    if (!operands.first) {
+        // If user hasn't typed a number as the first operand yet,
+        // then clicking an operator should do nothing.
+        return;
+    }
+    // Entering the second operand and then choosing an operator,
+    // we enter this case where we immediately get a result, show
+    // that result and set the result as the first operand for
+    // the next operation.
+    if (operands.second) {
+        const result = getCalcResult();
+        if (!error) {
+            operands.first = result.toString();
+            calcDisplay.textContent = operands.first;
+            operands.second = "";
+        } else {
+            showErrorAndReset();
+        }
+    }
+    operands.currentOperandKey = "second";
+    operands.operator = op;
+    usedDecPoint = false;
+}
+
 const operationButtons = document.querySelectorAll(".btn-op");
 operationButtons.forEach(btn => {
     btn.addEventListener("click", e => {
-        if (!operands.first) {
-            // If user hasn't typed a number as the first operand yet,
-            // then clicking an operator should do nothing.
-            return;
-        }
-        // Entering the second operand and then choosing an operator,
-        // we enter this case where we immediately get a result, show
-        // that result and set the result as the first operand for
-        // the next operation.
-        if (operands.second) {
-            const result = getCalcResult();
-            if (!error) {
-                operands.first = result.toString();
-                calcDisplay.textContent = operands.first;
-                operands.second = "";
-            } else {
-                showErrorAndReset();
-            }
-        }
-        operands.currentOperandKey = "second";
-        operands.operator = e.target.textContent;
-        usedDecPoint = false;
+        const op = e.target.textContent;
+        setOperator(op);
     })
 })
 
