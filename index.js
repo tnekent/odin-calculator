@@ -179,3 +179,21 @@ calcButtons.forEach(btn => {
         e.target.classList.remove("btn-clicked");
     });
 })
+
+window.addEventListener("keydown", e => {
+    const keyName = e.key;
+    console.log(keyName)
+    if (Number.isInteger(Number(keyName))) {
+        addNumberToOperand(Number(keyName));
+    } else if ("+-*/".includes(keyName)) {
+        setOperator(keyName);
+    } else if (keyName === ".") {
+        addDecimalPoint()
+    } else if (keyName === "Enter") {
+        showResults();
+    } else if (keyName === "Backspace" || keyName === "Delete") {
+        decrementOneDigitInOperand();
+    } else if (keyName === "Escape") {
+        clearAll();
+    }
+})
