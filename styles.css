@@ -60,6 +60,10 @@ button {
     flex-basis: 180px;
 }
 
+.btn-bck {
+    background-color: lightsalmon;
+}
+
 .btn-clr {
     background-color: orange;
 }
