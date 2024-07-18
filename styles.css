@@ -56,7 +56,7 @@ button {
     font-size: 50px;
 }
 
-.btn-clr, .btn-equals, .btn-0 {
+.btn-equals, .btn-0 {
     flex-basis: 180px;
 }
 
