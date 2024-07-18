@@ -52,6 +52,7 @@ function resetOperationVariables() {
     firstOperand = "";
     secondOperand = "";
     operator = null;
+    usedDecPoint = false;
 }
 
 const calcDisplay = document.querySelector("#calc-display");
