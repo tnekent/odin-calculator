@@ -73,14 +73,17 @@ function resetOperationVariables() {
 }
 
 const calcDisplay = document.querySelector("#calc-display");
+
+function addNumberToOperand(number) {
+    const opKey = operands.currentOperandKey;
+    operands[opKey] += number;
+    calcDisplay.textContent = operands[opKey];
+}
 const numberButtons = document.querySelectorAll(".btn-num");
 numberButtons.forEach(btn => {
     btn.addEventListener("click", e => {
         const number = e.target.textContent;
-        const opKey = operands.currentOperandKey;
-        operands[opKey] += number;
-        calcDisplay.textContent = operands[opKey];
-
+        addNumberToOperand(number);
     })
 })
 
