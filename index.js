@@ -148,19 +148,11 @@ decimalPointButton.addEventListener("click", e => {
 
 const backspaceButton = document.querySelector(".btn-bck");
 backspaceButton.addEventListener("click", e => {
-    if (!operator) {
-        if (!firstOperand) {
-            return;
-        }
-        firstOperand = firstOperand.slice(0, firstOperand.length - 1);
-        calcDisplay.textContent = firstOperand;
-    } else {
-        if (!secondOperand) {
-            return;
-        }
-        secondOperand = secondOperand.slice(0, secondOperand.length - 1);
-        calcDisplay.textContent = secondOperand;
-    }
+    const opKey = operands.currentOperandKey;
+    const currentOpValue = operands[opKey];
+    const newOperand = currentOpValue.slice(0, currentOpValue.length - 1);
+    operands[opKey] = newOperand;
+    calcDisplay.textContent = newOperand;
 })
 
 const calcButtons = document.querySelectorAll(".calc-btns button");
