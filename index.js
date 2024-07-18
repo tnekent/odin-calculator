@@ -118,8 +118,7 @@ operationButtons.forEach(btn => {
     })
 })
 
-const equalsButton = document.querySelector(".btn-equals");
-equalsButton.addEventListener("click", e => {
+function showResults() {
     if (!operands.second) {
         // If user hasn't typed the second number,
         // then clicking equals should do nothing.
@@ -132,7 +131,10 @@ equalsButton.addEventListener("click", e => {
     } else {
         showErrorAndReset();
     }
-})
+}
+
+const equalsButton = document.querySelector(".btn-equals");
+equalsButton.addEventListener("click", showResults);
 
 const clearButton = document.querySelector(".btn-clr");
 clearButton.addEventListener("click", e => {
