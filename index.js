@@ -143,8 +143,7 @@ function clearAll() {
 const clearButton = document.querySelector(".btn-clr");
 clearButton.addEventListener("click", clearAll);
 
-const decimalPointButton = document.querySelector(".btn-dec-point");
-decimalPointButton.addEventListener("click", e => {
+function addDecimalPoint() {
     if (usedDecPoint) {
         return;
     }
@@ -152,7 +151,10 @@ decimalPointButton.addEventListener("click", e => {
     operands[opKey] += ".";
     calcDisplay.textContent = operands[opKey];
     usedDecPoint = true;
-})
+}
+
+const decimalPointButton = document.querySelector(".btn-dec-point");
+decimalPointButton.addEventListener("click", addDecimalPoint);
 
 const backspaceButton = document.querySelector(".btn-bck");
 backspaceButton.addEventListener("click", e => {
