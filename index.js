@@ -2,6 +2,7 @@ let firstOperand = "";
 let secondOperand = "";
 let operator;
 let usedDecPoint = false;
+let error = null;
 
 function add(a, b) {
     return a + b;
@@ -16,6 +17,11 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    console.log(a, b)
+    if (b === 0) {
+        error = "NOOOOOOOOO";
+        return null;
+    }
     return a / b;
 }
 
@@ -45,7 +51,15 @@ function getCalcResult() {
     const result = operate(operator, firstNumber, secondNumber);
     // Reconverting to number removes the trailing zeroes
     // present after toFixed even if result is an integer
-    return Number(result.toFixed(10));
+    return !error ?
+        Number(result.toFixed(10)) :
+        null;
+}
+
+function showErrorAndReset() {
+    calcDisplay.textContent = error;
+    error = null;
+    resetOperationVariables();
 }
 
 function resetOperationVariables() {
@@ -73,7 +87,7 @@ numberButtons.forEach(btn => {
 const operationButtons = document.querySelectorAll(".btn-op");
 operationButtons.forEach(btn => {
     btn.addEventListener("click", e => {
-        if(!firstOperand) {
+        if (!firstOperand) {
             // If user hasn't typed a number as the first operand yet,
             // then clicking an operator should do nothing.
             return;
@@ -84,9 +98,13 @@ operationButtons.forEach(btn => {
         // the next operation.
         if (secondOperand) {
             const result = getCalcResult();
-            firstOperand = result.toString();
-            calcDisplay.textContent = firstOperand;
-            secondOperand = "";
+            if (!error) {
+                firstOperand = result.toString();
+                calcDisplay.textContent = firstOperand;
+                secondOperand = "";
+            } else {
+                showErrorAndReset();
+            }
         }
         operator = e.target.textContent;
         usedDecPoint = false;
@@ -101,8 +119,12 @@ equalsButton.addEventListener("click", e => {
         return;
     }
     const operationResult = getCalcResult();
-    calcDisplay.textContent = operationResult;
-    resetOperationVariables();
+    if (!error) {
+        calcDisplay.textContent = operationResult;
+        resetOperationVariables();
+    } else {
+        showErrorAndReset();
+    }
 })
 
 const clearButton = document.querySelector(".btn-clr");
