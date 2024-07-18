@@ -162,3 +162,10 @@ backspaceButton.addEventListener("click", e => {
         calcDisplay.textContent = secondOperand;
     }
 })
+
+const calcButtons = document.querySelectorAll(".calc-btns button");
+calcButtons.forEach(btn => {
+    btn.addEventListener("mousedown", e => {
+        e.target.classList.add("btn-clicked");
+    });
+})
