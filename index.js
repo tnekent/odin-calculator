@@ -135,11 +135,13 @@ function showResults() {
 const equalsButton = document.querySelector(".btn-equals");
 equalsButton.addEventListener("click", showResults);
 
-const clearButton = document.querySelector(".btn-clr");
-clearButton.addEventListener("click", e => {
+function clearAll() {
     calcDisplay.textContent = "";
     resetOperationVariables();
-})
+}
+
+const clearButton = document.querySelector(".btn-clr");
+clearButton.addEventListener("click", clearAll);
 
 const decimalPointButton = document.querySelector(".btn-dec-point");
 decimalPointButton.addEventListener("click", e => {
