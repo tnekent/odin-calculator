@@ -2,6 +2,7 @@ let operator;
 const operands = {
     first: "",
     second: "",
+    currentOperandKey: "first",
 }
 let usedDecPoint = false;
 let error = null;
@@ -67,6 +68,7 @@ function showErrorAndReset() {
 function resetOperationVariables() {
     operands.first = "";
     operands.second = "";
+    operands.currentOperandKey = "first";
     operator = null;
     usedDecPoint = false;
 }
@@ -76,13 +78,10 @@ const numberButtons = document.querySelectorAll(".btn-num");
 numberButtons.forEach(btn => {
     btn.addEventListener("click", e => {
         const number = e.target.textContent;
-        if (!operator) {
-            operands.first += number;
-            calcDisplay.textContent = operands.first;
-        } else {
-            operands.second += number;
-            calcDisplay.textContent = operands.second;
-        }
+        const opKey = operands.currentOperandKey;
+        operands[opKey] += number;
+        calcDisplay.textContent = operands[opKey];
+
     })
 })
 
@@ -108,6 +107,7 @@ operationButtons.forEach(btn => {
                 showErrorAndReset();
             }
         }
+        operands.currentOperandKey = "second";
         operator = e.target.textContent;
         usedDecPoint = false;
     })
@@ -140,13 +140,9 @@ decimalPointButton.addEventListener("click", e => {
     if (usedDecPoint) {
         return;
     }
-    if (!operator) {
-        operands.first += ".";
-        calcDisplay.textContent = operands.first;
-    } else {
-        operands.second += ".";
-        calcDisplay.textContent = operands.second;
-    }
+    const opKey = operands.currentOperandKey;
+    operands[opKey] += ".";
+    calcDisplay.textContent = operands[opKey];
     usedDecPoint = true;
 })
 
