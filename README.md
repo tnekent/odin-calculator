@@ -1,2 +1,2 @@
 # Calculator
-This is my implementation of [The Odin Project's](https://www.theodinproject.com/lessons/foundations-calculator) project, that is, to make a basic calculator.
+This is my implementation of [The Odin Project's](https://www.theodinproject.com/lessons/foundations-calculator) project, that is, to make a basic calculator. Visit the live preview at [tnekent.github.io](https://tnekent.github.io/odin-calculator/).
