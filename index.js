@@ -1,7 +1,7 @@
-let operator;
 const operands = {
     first: "",
     second: "",
+    operator: null,
     currentOperandKey: "first",
 }
 let usedDecPoint = false;
@@ -51,7 +51,7 @@ function operate(operator, num1, num2) {
 function getCalcResult() {
     const firstNumber = Number(operands.first);
     const secondNumber = Number(operands.second);
-    const result = operate(operator, firstNumber, secondNumber);
+    const result = operate(operands.operator, firstNumber, secondNumber);
     // Reconverting to number removes the trailing zeroes
     // present after toFixed even if result is an integer
     return !error ?
@@ -69,7 +69,7 @@ function resetOperationVariables() {
     operands.first = "";
     operands.second = "";
     operands.currentOperandKey = "first";
-    operator = null;
+    operands.operator = null;
     usedDecPoint = false;
 }
 
@@ -108,7 +108,7 @@ operationButtons.forEach(btn => {
             }
         }
         operands.currentOperandKey = "second";
-        operator = e.target.textContent;
+        operands.operator = e.target.textContent;
         usedDecPoint = false;
     })
 })
