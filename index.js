@@ -107,3 +107,14 @@ clearButton.addEventListener("click", e => {
     calcDisplay.textContent = "";
     resetOperationVariables();
 })
+
+const decimalPointButton = document.querySelector(".btn-dec-point");
+decimalPointButton.addEventListener("click", e => {
+    if (!operator) {
+        firstOperand += ".";
+        calcDisplay.textContent = firstOperand;
+    } else {
+        secondOperand += ".";
+        calcDisplay.textContent = secondOperand;
+    }
+})
