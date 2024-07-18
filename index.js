@@ -1,6 +1,7 @@
 let firstOperand = "";
 let secondOperand = "";
 let operator;
+let usedDecPoint = false;
 
 function add(a, b) {
     return a + b;
@@ -87,6 +88,7 @@ operationButtons.forEach(btn => {
             secondOperand = "";
         }
         operator = e.target.textContent;
+        usedDecPoint = false;
     })
 })
 
@@ -110,6 +112,9 @@ clearButton.addEventListener("click", e => {
 
 const decimalPointButton = document.querySelector(".btn-dec-point");
 decimalPointButton.addEventListener("click", e => {
+    if (usedDecPoint) {
+        return;
+    }
     if (!operator) {
         firstOperand += ".";
         calcDisplay.textContent = firstOperand;
@@ -117,4 +122,5 @@ decimalPointButton.addEventListener("click", e => {
         secondOperand += ".";
         calcDisplay.textContent = secondOperand;
     }
+    usedDecPoint = true;
 })
