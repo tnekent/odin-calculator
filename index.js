@@ -1,6 +1,8 @@
-let firstOperand = "";
-let secondOperand = "";
 let operator;
+const operands = {
+    first: "",
+    second: "",
+}
 let usedDecPoint = false;
 let error = null;
 
@@ -46,8 +48,8 @@ function operate(operator, num1, num2) {
 }
 
 function getCalcResult() {
-    const firstNumber = Number(firstOperand);
-    const secondNumber = Number(secondOperand);
+    const firstNumber = Number(operands.first);
+    const secondNumber = Number(operands.second);
     const result = operate(operator, firstNumber, secondNumber);
     // Reconverting to number removes the trailing zeroes
     // present after toFixed even if result is an integer
@@ -63,8 +65,8 @@ function showErrorAndReset() {
 }
 
 function resetOperationVariables() {
-    firstOperand = "";
-    secondOperand = "";
+    operands.first = "";
+    operands.second = "";
     operator = null;
     usedDecPoint = false;
 }
@@ -75,11 +77,11 @@ numberButtons.forEach(btn => {
     btn.addEventListener("click", e => {
         const number = e.target.textContent;
         if (!operator) {
-            firstOperand += number;
-            calcDisplay.textContent = firstOperand;
+            operands.first += number;
+            calcDisplay.textContent = operands.first;
         } else {
-            secondOperand += number;
-            calcDisplay.textContent = secondOperand;
+            operands.second += number;
+            calcDisplay.textContent = operands.second;
         }
     })
 })
@@ -87,7 +89,7 @@ numberButtons.forEach(btn => {
 const operationButtons = document.querySelectorAll(".btn-op");
 operationButtons.forEach(btn => {
     btn.addEventListener("click", e => {
-        if (!firstOperand) {
+        if (!operands.first) {
             // If user hasn't typed a number as the first operand yet,
             // then clicking an operator should do nothing.
             return;
@@ -96,12 +98,12 @@ operationButtons.forEach(btn => {
         // we enter this case where we immediately get a result, show
         // that result and set the result as the first operand for
         // the next operation.
-        if (secondOperand) {
+        if (operands.second) {
             const result = getCalcResult();
             if (!error) {
-                firstOperand = result.toString();
-                calcDisplay.textContent = firstOperand;
-                secondOperand = "";
+                operands.first = result.toString();
+                calcDisplay.textContent = operands.first;
+                operands.second = "";
             } else {
                 showErrorAndReset();
             }
@@ -113,7 +115,7 @@ operationButtons.forEach(btn => {
 
 const equalsButton = document.querySelector(".btn-equals");
 equalsButton.addEventListener("click", e => {
-    if (!secondOperand) {
+    if (!operands.second) {
         // If user hasn't typed the second number,
         // then clicking equals should do nothing.
         return;
@@ -139,11 +141,11 @@ decimalPointButton.addEventListener("click", e => {
         return;
     }
     if (!operator) {
-        firstOperand += ".";
-        calcDisplay.textContent = firstOperand;
+        operands.first += ".";
+        calcDisplay.textContent = operands.first;
     } else {
-        secondOperand += ".";
-        calcDisplay.textContent = secondOperand;
+        operands.second += ".";
+        calcDisplay.textContent = operands.second;
     }
     usedDecPoint = true;
 })
