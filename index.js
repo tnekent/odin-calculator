@@ -159,14 +159,16 @@ function addDecimalPoint() {
 const decimalPointButton = document.querySelector(".btn-dec-point");
 decimalPointButton.addEventListener("click", addDecimalPoint);
 
-const backspaceButton = document.querySelector(".btn-bck");
-backspaceButton.addEventListener("click", e => {
+function decrementOneDigitInOperand() {
     const opKey = operands.currentOperandKey;
     const currentOpValue = operands[opKey];
     const newOperand = currentOpValue.slice(0, currentOpValue.length - 1);
     operands[opKey] = newOperand;
     calcDisplay.textContent = newOperand;
-})
+}
+
+const backspaceButton = document.querySelector(".btn-bck");
+backspaceButton.addEventListener("click", decrementOneDigitInOperand);
 
 const calcButtons = document.querySelectorAll(".calc-btns button");
 calcButtons.forEach(btn => {
