@@ -20,7 +20,6 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    console.log(a, b)
     if (b === 0) {
         error = "NOOOOOOOOO";
         return null;
