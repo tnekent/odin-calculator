@@ -168,4 +168,7 @@ calcButtons.forEach(btn => {
     btn.addEventListener("mousedown", e => {
         e.target.classList.add("btn-clicked");
     });
+    btn.addEventListener("mouseup", e => {
+        e.target.classList.remove("btn-clicked");
+    });
 })
